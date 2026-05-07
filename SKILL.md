@@ -1,6 +1,6 @@
 ---
 name: obsidian-wiki-skill
-description: Maintain and evolve Obsidian-based knowledge vaults using a host-aware workflow for orientation, source ingest, answering, and audit. Use when Codex needs to work inside an existing Obsidian vault or Markdown knowledge system to connect source notes, knowledge notes, project notes, and system notes; maintain schema, index, or log conventions; audit vault structure or evidence quality; or run vault-aware knowledge maintenance with required companion skills such as obsidian-markdown, obsidian-cli, obsidian-bases, and json-canvas.
+description: Maintain and evolve Obsidian-based knowledge vaults using a host-aware workflow for orientation, source ingest, answering, and audit. Use when Codex needs to work inside an existing Obsidian vault or Markdown knowledge system to connect source notes, knowledge notes, project notes, and system notes; maintain schema, index, or log conventions; run vault linting or health checks; audit vault structure or evidence quality; or perform vault-aware knowledge maintenance with required companion skills such as obsidian-markdown, obsidian-cli, obsidian-bases, and json-canvas.
 ---
 
 # Obsidian Wiki Skill
@@ -92,6 +92,11 @@ Goal:
 
 Default behavior:
 - read-first, then write only when the user asks for fixes or when the task clearly includes repair
+
+Sub-modes:
+
+- `lint`: run a structured vault health check and report findings
+- `repair`: apply targeted fixes after findings are accepted or explicitly requested
 
 Detailed mode behavior lives in [workflow-modes.md](references/workflow-modes.md).
 
@@ -198,6 +203,8 @@ Default rule:
 
 Audit for trust and usability, not cosmetic tidiness alone.
 
+Inside `audit`, treat `lint` as the default read-first sub-mode unless the user clearly asks for direct repair.
+
 Check:
 
 - structure health
@@ -206,12 +213,16 @@ Check:
 - relationship health
 - evidence health
 - duplication or weakly differentiated notes
+- stale or weak synthesis
+- schema, index, or log drift when those artifacts exist
 
 Return findings in priority order:
 
 - fix now
 - should improve
 - monitor
+
+When the user asks to `lint`, return a structured findings list before making repairs.
 
 ## Evidence And Safety Policy
 

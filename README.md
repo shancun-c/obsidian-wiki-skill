@@ -2,7 +2,7 @@
 
 A vault-aware knowledge maintenance skill for Obsidian-based Markdown systems.
 
-This project turns the LLM Wiki idea into a more practical skill for real Obsidian vaults. Instead of assuming a fixed wiki folder structure, it starts by understanding the user's existing vault and then works through four modes: `orient`, `answer`, `ingest`, and `audit`.
+This project turns the LLM Wiki idea into a more practical skill for real Obsidian vaults. Instead of assuming a fixed wiki folder structure, it starts by understanding the user's existing vault and then works through four modes: `orient`, `answer`, `ingest`, and `audit`, with `lint` as a built-in sub-mode under `audit`.
 
 ## Why This Exists
 
@@ -36,6 +36,8 @@ It does not try to replace low-level Obsidian syntax or CLI skills.
 - `answer`: answer from vault context without writing by default
 - `ingest`: add new source material and selectively promote durable knowledge
 - `audit`: review structure, navigation, metadata, relationships, and evidence quality
+
+Inside `audit`, use `lint` as the default read-first health-check path.
 
 ## Design Principles
 
@@ -162,6 +164,7 @@ Example prompts:
 - `Use $obsidian-wiki-skill to orient to my Obsidian vault before we make changes.`
 - `Use $obsidian-wiki-skill to ingest this article into my source and knowledge notes.`
 - `Use $obsidian-wiki-skill to audit my vault for weak evidence and navigation drift.`
+- `Use $obsidian-wiki-skill to lint my Obsidian vault and report broken structure, weak evidence, and index drift.`
 - `Use $obsidian-wiki-skill to answer this question from my vault without writing back.`
 
 ## Validation

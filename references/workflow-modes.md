@@ -68,3 +68,30 @@ Audit scope:
 Default rule:
 
 - read first, then propose or apply targeted fixes
+
+### `lint` sub-mode
+
+Treat `lint` as the default sub-mode inside `audit`.
+
+Use it when the user asks to:
+
+- lint the vault
+- run a health check
+- find navigation drift
+- inspect weak evidence
+- check schema, index, or log consistency
+
+Lint checklist:
+
+- structure health
+- navigation health
+- metadata coverage
+- relationship quality
+- evidence traceability
+- stale or weak synthesis
+- schema, index, or log drift when those files exist
+
+Default rule:
+
+- report findings first
+- do not repair automatically unless the user asks for fixes or the task already includes repair
