@@ -61,6 +61,8 @@ Recommended:
 
 If those skills are unavailable, this skill should not pretend to offer complete Obsidian-native behavior.
 
+These companion skills come from the Obsidian skill ecosystem, such as the public [`kepano/obsidian-skills`](https://github.com/kepano/obsidian-skills) repository or an environment that already bundles them.
+
 ## Repository Layout
 
 ```text
@@ -92,20 +94,68 @@ If those skills are unavailable, this skill should not pretend to offer complete
 
 ## Installation
 
-This repository is the skill folder.
+This repository is already the final skill folder. You do not need to generate or rearrange anything before installing it.
 
-Place it where your Codex environment can discover skills, for example:
+### Prerequisites
+
+Before using this skill, make sure your environment already has these companion skills available:
+
+- `obsidian-markdown`
+- `obsidian-cli`
+- `obsidian-bases`
+- `json-canvas`
+
+Recommended:
+
+- `defuddle`
+
+If your environment does not bundle them by default, install them from your Obsidian skills source first.
+
+### Install From GitHub
+
+Clone the repository:
+
+```bash
+git clone https://github.com/shancun-c/obsidian-wiki-skill.git
+cd obsidian-wiki-skill
+```
+
+Then place the folder where Codex can discover skills:
 
 ```bash
 mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
-ln -s /path/to/obsidian-wiki-skill "${CODEX_HOME:-$HOME/.codex}/skills/obsidian-wiki-skill"
+ln -s "$(pwd)" "${CODEX_HOME:-$HOME/.codex}/skills/obsidian-wiki-skill"
 ```
 
-Or copy the folder directly into your skills directory.
+Or copy the folder directly:
+
+```bash
+cp -R /path/to/obsidian-wiki-skill "${CODEX_HOME:-$HOME/.codex}/skills/obsidian-wiki-skill"
+```
+
+### Verify Installation
+
+After installation, the target folder should contain at least:
+
+```text
+obsidian-wiki-skill/
+├── SKILL.md
+├── agents/openai.yaml
+└── references/
+```
+
+If those files are present and the companion skills are available, the skill is ready to use.
 
 ## Usage
 
 Use this skill when you want Codex to work inside an existing Obsidian vault as a knowledge maintainer rather than a generic editor.
+
+### Typical Workflow
+
+1. Open a task that references your Obsidian vault.
+2. Invoke `$obsidian-wiki-skill`.
+3. Let it orient to the vault first.
+4. Continue into `answer`, `ingest`, or `audit` depending on the task.
 
 Example prompts:
 
@@ -121,8 +171,10 @@ The skill was validated with the `skill-creator` quick validator.
 If you want to re-run validation locally:
 
 ```bash
-PYTHONPATH=/path/to/vendor/python python3 /path/to/skill-creator/scripts/quick_validate.py /path/to/obsidian-wiki-skill
+python3 /path/to/skill-creator/scripts/quick_validate.py /path/to/obsidian-wiki-skill
 ```
+
+If your Python environment does not already include `PyYAML`, install it first or provide it through `PYTHONPATH`.
 
 ## Status
 
