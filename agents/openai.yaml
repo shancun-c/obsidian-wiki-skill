@@ -1,0 +1,4 @@
+interface:
+  display_name: "Obsidian Wiki Skill"
+  short_description: "Vault-aware Obsidian knowledge maintenance"
+  default_prompt: "Use $obsidian-wiki-skill to maintain my Obsidian knowledge vault."
