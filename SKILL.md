@@ -156,6 +156,17 @@ Treat these as protocol roles, not mandatory root files:
 - `index.md`: navigation entry point, global or local
 - `log.md`: meaningful maintenance history
 
+Treat `log.md` as the active maintenance log, not an eternal append-only dump.
+
+Log policy:
+
+- log only meaningful maintenance actions such as ingest, audit, lint, repair, bulk retagging, restructuring, or source refresh
+- do not log ordinary chat answers unless the answer is explicitly filed into the vault
+- rotate the active log when it becomes hard to scan, for example after a few hundred entries, several months of activity, or obvious performance/readability drift
+- archive rotated logs by time period such as `log-2026.md`, `log-2026-q2.md`, or another vault-native pattern
+- keep a short active `log.md` focused on recent history
+- if the vault relies heavily on maintenance history, preserve a lightweight `log index` or summary note that points to archived logs
+
 Prefer existing stable fields. Common useful fields include:
 
 - base: `type`, `created`, `updated`
@@ -182,6 +193,7 @@ Guardrails:
 - Avoid broad propagation across many notes unless the value is clear.
 - Do not silently upgrade a source summary into a durable conclusion.
 - Do not impose `entities/` or `concepts/` folders if the vault does not use them.
+- Do not let `log.md` become an unbounded transcript; rotate it when it stops being a useful recent-history view.
 
 ## Answer Workflow
 
@@ -215,6 +227,7 @@ Check:
 - duplication or weakly differentiated notes
 - stale or weak synthesis
 - schema, index, or log drift when those artifacts exist
+- active log size, scanability, and rotation hygiene when the vault uses `log.md`
 
 Return findings in priority order:
 
@@ -223,6 +236,8 @@ Return findings in priority order:
 - monitor
 
 When the user asks to `lint`, return a structured findings list before making repairs.
+
+Read [log-maintenance.md](references/log-maintenance.md) when the vault uses `log.md` heavily or when maintenance history is starting to sprawl.
 
 ## Evidence And Safety Policy
 

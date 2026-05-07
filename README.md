@@ -47,6 +47,7 @@ Inside `audit`, use `lint` as the default read-first health-check path.
 - Evidence-aware: treat source notes as the evidence layer and knowledge notes as the conclusion layer
 - Write-safe: require planning for medium-risk writes and confirmation for high-risk writes
 - Companion-skill driven: use dedicated Obsidian skills for concrete format and vault actions
+- Log-aware: treat `log.md` as an active maintenance log that can be rotated and archived over time
 
 ## Required Companion Skills
 
@@ -89,6 +90,7 @@ These companion skills come from the Obsidian skill ecosystem, such as the publi
 - [agents/openai.yaml](agents/openai.yaml): UI metadata for the skill
 - [references/workflow-modes.md](references/workflow-modes.md): detailed behavior for `orient`, `answer`, `ingest`, and `audit`
 - [references/evidence-and-safety.md](references/evidence-and-safety.md): evidence policy, source trust, conflict handling, and write safety
+- [references/log-maintenance.md](references/log-maintenance.md): how to keep `log.md` useful as it grows
 - [references/companion-skill-routing.md](references/companion-skill-routing.md): when to invoke each companion Obsidian skill
 - [docs/SKILL.md](docs/SKILL.md): original upstream skill used as a baseline
 - [docs/karpathy-llm-wiki.md](docs/karpathy-llm-wiki.md): the core idea document

@@ -50,6 +50,7 @@ Ingest flow:
 Default rule:
 
 - do not spread a single source across many notes unless the value is clear
+- do not append low-value noise to `log.md`
 
 ## `audit`
 
@@ -90,8 +91,20 @@ Lint checklist:
 - evidence traceability
 - stale or weak synthesis
 - schema, index, or log drift when those files exist
+- active log bloat and rotation hygiene when the vault uses `log.md`
 
 Default rule:
 
 - report findings first
 - do not repair automatically unless the user asks for fixes or the task already includes repair
+
+### Log rotation inside `audit`
+
+When a vault uses `log.md`, treat it as a recent operational journal rather than a permanent monolith.
+
+Preferred behavior:
+
+1. Keep `log.md` short enough to scan quickly.
+2. Rotate older entries into archival files such as `log-2026.md` or another vault-native naming pattern.
+3. Preserve a summary or index note if archived logs are important to navigation.
+4. During lint, flag logs that have become too long, too noisy, or no longer useful as recent-history views.
